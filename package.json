@@ -14,6 +14,7 @@
     "eslint-config-prettier": "~8.3.0",
     "eslint-plugin-jest": "~25.3.0",
     "jest": "~27.4.4",
+    "nodemon": "^2.0.15",
     "prettier": "~2.5.1",
     "rimraf": "~3.0.2",
     "ts-jest": "~27.1.2",
@@ -21,19 +22,23 @@
     "typescript": "~4.5.4"
   },
   "scripts": {
-    "start": "node build/src/main.js",
+    "start": "node --enable-source-maps build/src/main.js",
+    "start:watch": "nodemon --enable-source-maps build/src/main.js",
+    "start:debugger": "node --enable-source-maps --inspect-brk build/src/main.js",
     "clean": "rimraf coverage build tmp",
     "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.release.json",
     "build:watch": "tsc -w -p tsconfig.release.json",
     "lint": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write ./src ./__tests__",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "tslib": "~2.3.1"
+    "tslib": "~2.3.1",
+    "winston": "^3.3.3"
   },
   "volta": {
     "node": "17.3.0"
